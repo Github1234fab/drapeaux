@@ -14,7 +14,8 @@
 
 onMount(async () => {
 	try {
-		const response = await fetch('/.netlify/functions/api?endpoint=all');
+		// const response = await fetch('/.netlify/functions/api?endpoint=all');
+		const response = await fetch('../../netlify/functions/api?endpoint=all');
 		if (!response.ok) throw new Error('Erreur lors du fetch');
 		flags = await response.json();
 		startNewRound();
