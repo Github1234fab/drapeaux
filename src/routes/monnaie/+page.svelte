@@ -12,7 +12,7 @@
 	// Charger les pays
 	onMount(async () => {
 	try {
-		const res = await fetch('../../netlify/functions/getCountries');
+		const res = await fetch('/.netlify/functions/getCountries');
 		if (!res.ok) throw new Error('Erreur lors du chargement des pays');
 		countries = await res.json();
 		startGame();

@@ -28,7 +28,9 @@
 	// Fonction principale pour récupérer les données depuis l’API
 	async function fetchData() {
 	try {
-		const response = await fetch('../../netlify/functions/getSelectedRegion?url=' + encodeURIComponent(urlSelected));
+		const encodedEndpoint = encodeURIComponent(urlSelected);
+const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
+
 		if (!response.ok) throw new Error('Erreur lors du chargement des données');
 		
 		flags = await response.json();

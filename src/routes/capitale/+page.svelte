@@ -38,7 +38,8 @@
 async function fetchData() {
 	try {
 		const encodedEndpoint = encodeURIComponent(urlSelected); // sécurise l'URL
-		const res = await fetch(`../../netlify/functions/api?endpoint=${encodedEndpoint}`);
+		const res = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
+
 		if (!res.ok) throw new Error('Erreur lors du fetch');
 		flags = await res.json();
 		startQuestion();
