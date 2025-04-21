@@ -11,11 +11,18 @@
 	let score = 0;
 
 	// Chargement des données à l'initialisation
-	onMount(async () => {
-		const response = await fetch('https://restcountries.com/v3.1/all');
+
+onMount(async () => {
+	try {
+		const response = await fetch('/.netlify/functions/api?endpoint=all');
+		if (!response.ok) throw new Error('Erreur lors du fetch');
 		flags = await response.json();
 		startNewRound();
-	});
+	} catch (error) {
+		console.error('Erreur dans onMount :', error);
+	}
+});
+
 
 	// Démarre une nouvelle question
 	function startNewRound() {

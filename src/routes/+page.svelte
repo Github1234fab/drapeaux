@@ -1,3 +1,5 @@
+
+
 <main>
 	<nav>
 		<a href="/drapeaux">Drapeaux</a>
@@ -30,10 +32,10 @@
 		padding: 10px 50px;
 		border-radius: 10px;
 		border: none;
-		box-shadow: 10px 30px 20px  rgba(0, 0, 0, 0.757);
+		box-shadow: 10px 30px 20px rgba(0, 0, 0, 0.757);
 		font-weight: 800;
 		letter-spacing: -0.9px;
-		transition: all 0.3s ease-in-out;	
+		transition: all 0.3s ease-in-out;
 	}
 	nav a:hover {
 		background-color: #1f1e1e;

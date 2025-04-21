@@ -27,17 +27,20 @@
 
 	// Fonction principale pour récupérer les données depuis l’API
 	async function fetchData() {
-		try {
-			const response = await fetch(urlSelected); // Requête vers l'API avec l'URL sélectionnée
-			flags = await response.json(); // Récupération des données
-			oneFlag(); // Choix du pays à deviner
-			randomNameOne(); // Génère un nom incorrect
-			randomNameTwo(); // Génère un autre nom incorrect différent du premier
-			shuffle(); // Mélange les réponses
-		} catch (err) {
-			console.error(err); // Gestion d’erreur
-		}
+	try {
+		const response = await fetch('/.netlify/functions/getSelectedRegion?url=' + encodeURIComponent(urlSelected));
+		if (!response.ok) throw new Error('Erreur lors du chargement des données');
+		
+		flags = await response.json();
+		oneFlag();
+		randomNameOne();
+		randomNameTwo();
+		shuffle();
+	} catch (err) {
+		console.error('Erreur depuis la fonction Netlify :', err);
 	}
+}
+
 
 	// Fonction appelée quand l'utilisateur sélectionne une région (via un bouton par exemple)
 	function findUrl(index) {

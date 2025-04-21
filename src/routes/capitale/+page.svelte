@@ -30,19 +30,22 @@
 	let showGame = false;
 
 	function findUrl(regionUrl) {
-		urlSelected = regionUrl;
-		showGame = true;
-		fetchData();
+	urlSelected = regionUrl;
+	showGame = true;
+	fetchData();
+}
+
+async function fetchData() {
+	try {
+		const encodedEndpoint = encodeURIComponent(urlSelected); // sécurise l'URL
+		const res = await fetch(`/.netlify/functions/api?endpoint=${encodedEndpoint}`);
+		if (!res.ok) throw new Error('Erreur lors du fetch');
+		flags = await res.json();
+		startQuestion();
+	} catch (err) {
+		console.error('Erreur dans fetchData :', err);
 	}
-	async function fetchData() {
-		try {
-			const res = await fetch(urlSelected);
-			flags = await res.json();
-			startQuestion();
-		} catch (err) {
-			console.error(err);
-		}
-	}
+}
 
 	function startQuestion() {
 		if (questionNumber >= 10) {
