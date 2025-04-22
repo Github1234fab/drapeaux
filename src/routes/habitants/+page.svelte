@@ -12,19 +12,18 @@
 
 	// Chargement des données à l'initialisation
 
-onMount(async () => {
-	try {
-		// const response = await fetch('/.netlify/functions/api?endpoint=all');
-		const response = await fetch('/.netlify/functions/getCountries?endpoint=all');
+	onMount(async () => {
+		try {
+			// const response = await fetch('/.netlify/functions/api?endpoint=all');
+			const response = await fetch('/.netlify/functions/getCountries?endpoint=all');
 
-		if (!response.ok) throw new Error('Erreur lors du fetch');
-		flags = await response.json();
-		startNewRound();
-	} catch (error) {
-		console.error('Erreur dans onMount :', error);
-	}
-});
-
+			if (!response.ok) throw new Error('Erreur lors du fetch');
+			flags = await response.json();
+			startNewRound();
+		} catch (error) {
+			console.error('Erreur dans onMount :', error);
+		}
+	});
 
 	// Démarre une nouvelle question
 	function startNewRound() {
@@ -71,48 +70,46 @@ onMount(async () => {
 </script>
 
 <main>
+	{#if gamePart < 10}
+		<div class="container">
+			<h2>Comment appelle-t-on les habitants de :</h2>
+			<h1>{country}</h1>
+			<img class="flag" src={countryFlag} alt="Drapeau de {country}" />
+			<a href="/">Accueil</a>
+			<div class="options">
+				{#each options as opt}
+					<button on:click={() => reponse(opt)}>{opt.name}</button>
+				{/each}
+			</div>
 
-{#if gamePart < 10}
-	<div class="container">
-		<h2>Comment appelle-t-on les habitants de :</h2>
-		<h1>{country}</h1>
-		<img class="flag" src={countryFlag} alt="Drapeau de {country}" />
-<a href="/">Accueil</a>
-		<div class="options">
-			{#each options as opt}
-				<button on:click={() => reponse(opt)}>{opt.name}</button>
-			{/each}
-          
-		</div>
+			{#if showResult}
+				<p>
+					{options.find((o) => o.isCorrect).name === correctDemonym
+						? 'Bonne réponse !'
+						: `Mauvaise réponse. Réponse attendue : ${correctDemonym}`}
+				</p>
+				<button class="next" on:click={restartGame} aria-label="Question suivante">
+					Suivant
+				</button>
+			{/if}
 
-		{#if showResult}
-			<p>
-				{options.find((o) => o.isCorrect).name === correctDemonym
-					? 'Bonne réponse !'
-					: `Mauvaise réponse. Réponse attendue : ${correctDemonym}`}
+			<p class="score">
+				Question : {gamePart} / 10<br />
+				Bonnes réponses : {score}
 			</p>
-			<button class="next" on:click={restartGame} aria-label="Question suivante">
-				Suivant 
-			</button>
-		{/if}
-
-		<p class="score">
-			Question : {gamePart} / 10<br />
-			Bonnes réponses : {score}
-		</p>
-	</div>
-{:else}
-	<div class="score">
-		<h2>Quiz terminé !</h2>
-		<p>Score final : {score} / 10</p>
-		<button on:click={() => location.reload()}>Rejouer</button>
-		<a href="/">Retour au menu principal</a>
-	</div>
-{/if}
+		</div>
+	{:else}
+		<div class="score">
+			<h2>Quiz terminé !</h2>
+			<p>Score final : {score} / 10</p>
+			<button on:click={() => location.reload()}>Rejouer</button>
+			<a href="/">Retour au menu principal</a>
+		</div>
+	{/if}
 </main>
 
 <style>
-	main{
+	main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -157,7 +154,6 @@ onMount(async () => {
 	.options button:hover {
 		background-color: #ddd;
 		color: white;
-		
 	}
 	.next {
 		margin-top: 1rem;
@@ -174,7 +170,7 @@ onMount(async () => {
 	.next:hover {
 		padding: 25px;
 	}
-	.score{
+	.score {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -189,7 +185,7 @@ onMount(async () => {
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		font-weight: 700;
 	}
-	.score button{
+	.score button {
 		background-color: black;
 		padding: 20px;
 		color: white;

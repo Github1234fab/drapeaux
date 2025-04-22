@@ -1,8 +1,7 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-netlify';
 
 export default {
-	kit: {
-		adapter: adapter(),
-		// Pas de configuration pour `base`
-	}
+  kit: {
+    adapter: adapter()
+  }
 };

@@ -27,22 +27,24 @@
 
 	// Fonction principale pour récupérer les données depuis l’API
 	async function fetchData() {
-	try {
-		const encodedEndpoint = encodeURIComponent(urlSelected);
-const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
+		try {
+			const encodedEndpoint = encodeURIComponent(urlSelected);
+			// const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
+			const response = await fetch(
+  `/api/proxy?endpoint=${encodeURIComponent("https://restcountries.com/v3.1/region/europe")}`
+);
 
-		if (!response.ok) throw new Error('Erreur lors du chargement des données');
-		
-		flags = await response.json();
-		oneFlag();
-		randomNameOne();
-		randomNameTwo();
-		shuffle();
-	} catch (err) {
-		console.error('Erreur depuis la fonction Netlify :', err);
+			if (!response.ok) throw new Error('Erreur lors du chargement des données');
+
+			flags = await response.json();
+			oneFlag();
+			randomNameOne();
+			randomNameTwo();
+			shuffle();
+		} catch (err) {
+			console.error('Erreur depuis la fonction Netlify :', err);
+		}
 	}
-}
-
 
 	// Fonction appelée quand l'utilisateur sélectionne une région (via un bouton par exemple)
 	function findUrl(index) {
@@ -178,14 +180,12 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 					{/if}
 					{#if isFinished}
 						<div class="end-game">
-							<p> Partie terminée !</p>
+							<p>Partie terminée !</p>
 							<p>Votre score : {counter} / 10</p>
 							<button on:click={rejouer}>Rejouer</button>
 							<a class="return" href="/">Retour au menu principal</a>
 						</div>
 					{/if}
-
-				
 				</div>
 			</div>
 		{/if}
@@ -206,7 +206,6 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		
 	}
 	.container_Gaming {
 		display: flex;
@@ -376,11 +375,10 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
 		transition: 0.2s ease-in-out;
 		padding: 20px 10px;
-		
 	}
-	.next:hover{
+	.next:hover {
 		padding: 22px 12px;
-	background-color: rgb(21, 21, 21);
+		background-color: rgb(21, 21, 21);
 	}
 
 	.end-game {
@@ -395,10 +393,10 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 		font-size: 1rem;
 		color: white;
 		font-family: 'DM Sans', sans-serif;
-		
 	}
 
-	.end-game button, .return {
+	.end-game button,
+	.return {
 		margin-top: 20px;
 		margin: 1rem;
 		padding: 20px 30px;
@@ -412,7 +410,8 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
 		text-decoration: none;
 	}
-	.end-game button:hover, .return:hover{
+	.end-game button:hover,
+	.return:hover {
 		background-color: #0056b3;
 	}
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
@@ -446,7 +445,7 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 			width: 100%;
 			gap: 15px;
 		}
-/* 		
+		/* 		
 		.table_board {
 			background-color: white;
 			box-shadow:
@@ -496,7 +495,7 @@ const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encode
 		.container_countries_names {
 			width: 400px;
 		}
-		
+
 		/* .table_board {
 			margin-top: 5px;
 			box-shadow:

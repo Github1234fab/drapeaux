@@ -12,7 +12,8 @@
 	// Charger les pays
 	onMount(async () => {
 	try {
-		const res = await fetch('/.netlify/functions/getCountries');
+		const endpoint = encodeURIComponent('https://restcountries.com/v3.1/all'); // ou autre URL
+		const res = await fetch(`/.netlify/functions/getCountries?endpoint=${endpoint}`);
 		if (!res.ok) throw new Error('Erreur lors du chargement des pays');
 		countries = await res.json();
 		startGame();
@@ -20,7 +21,6 @@
 		console.error('Erreur depuis la fonction Netlify :', error);
 	}
 });
-
 	// Choisir un pays et générer les options
 	function startGame() {
 		showResult = false;
