@@ -13,10 +13,10 @@
 	onMount(async () => {
 	try {
 		const endpoint = encodeURIComponent('https://restcountries.com/v3.1/all'); // ou autre URL
-		const res = await fetch(`/.netlify/functions/getCountries?endpoint=${endpoint}`);
-		if (!res.ok) throw new Error('Erreur lors du chargement des pays');
-		countries = await res.json();
-		startGame();
+		const res = await fetch(`/api/proxy?endpoint=${endpoint}`);
+			if (!res.ok) throw new Error('Erreur lors du chargement des pays');
+			countries = await res.json();
+			startGame();
 	} catch (error) {
 		console.error('Erreur depuis la fonction Netlify :', error);
 	}

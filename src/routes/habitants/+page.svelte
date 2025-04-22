@@ -11,12 +11,14 @@
 	let score = 0;
 
 	// Chargement des données à l'initialisation
-
 	onMount(async () => {
 		try {
-			// const response = await fetch('/.netlify/functions/api?endpoint=all');
-			const response = await fetch('/.netlify/functions/getCountries?endpoint=all');
+			// Encodage de l'URL pour sécuriser la requête
+			const endpoint = 'https://restcountries.com/v3.1/all';
+			const encodedEndpoint = encodeURIComponent(endpoint); 
 
+			// On fait appel au proxy
+			const response = await fetch(`/api/proxy?endpoint=${encodedEndpoint}`);
 			if (!response.ok) throw new Error('Erreur lors du fetch');
 			flags = await response.json();
 			startNewRound();
@@ -64,6 +66,7 @@
 		showResult = true;
 	}
 
+	// Relance une nouvelle partie
 	function restartGame() {
 		if (gamePart < 10) startNewRound();
 	}

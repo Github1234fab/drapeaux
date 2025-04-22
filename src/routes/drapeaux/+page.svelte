@@ -31,8 +31,8 @@
 			const encodedEndpoint = encodeURIComponent(urlSelected);
 			// const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
 			const response = await fetch(
-  `/api/proxy?endpoint=${encodeURIComponent("https://restcountries.com/v3.1/region/europe")}`
-);
+        `/api/proxy?endpoint=${encodedEndpoint}`
+      );
 
 			if (!response.ok) throw new Error('Erreur lors du chargement des données');
 

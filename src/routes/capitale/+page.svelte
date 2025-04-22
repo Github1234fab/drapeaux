@@ -29,25 +29,29 @@
 	let urlSelected = '';
 	let showGame = false;
 
+	// Fonction pour sélectionner une région et afficher le jeu
 	function findUrl(regionUrl) {
-	urlSelected = regionUrl;
-	showGame = true;
-	fetchData();
-}
-
-async function fetchData() {
-	try {
-		const encodedEndpoint = encodeURIComponent(urlSelected); // sécurise l'URL
-		const res = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
-
-		if (!res.ok) throw new Error('Erreur lors du fetch');
-		flags = await res.json();
-		startQuestion();
-	} catch (err) {
-		console.error('Erreur dans fetchData :', err);
+		urlSelected = regionUrl;
+		showGame = true;
+		fetchData();
 	}
-}
 
+	// Fonction pour faire la requête via le proxy
+	async function fetchData() {
+		try {
+			const encodedEndpoint = encodeURIComponent(urlSelected); // Sécurisation de l'URL
+
+			// On fait appel au proxy
+			const res = await fetch(`/api/proxy?endpoint=${encodedEndpoint}`);
+			if (!res.ok) throw new Error('Erreur lors du fetch');
+			flags = await res.json();
+			startQuestion();
+		} catch (err) {
+			console.error('Erreur dans fetchData :', err);
+		}
+	}
+
+	// Fonction pour démarrer la question
 	function startQuestion() {
 		if (questionNumber >= 10) {
 			gameEnded = true;
@@ -73,16 +77,19 @@ async function fetchData() {
 		].sort(() => Math.random() - 0.5);
 	}
 
+	// Fonction pour gérer la réponse de l'utilisateur
 	function handleAnswer(option) {
 		showResult = true;
 		if (option.isCorrect) score++;
 	}
 
+	// Passer à la question suivante
 	function nextQuestion() {
 		questionNumber++;
 		startQuestion();
 	}
 
+	// Recharger le jeu
 	function reload() {
 		score = 0;
 		questionNumber = 0;
@@ -140,7 +147,7 @@ async function fetchData() {
 		max-width: 600px;
 		margin: 0 auto;
 		text-align: center;
-		background-image: url("../../assets/visuE.png");
+		background-image: url("../../assets/visuB.png");
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
