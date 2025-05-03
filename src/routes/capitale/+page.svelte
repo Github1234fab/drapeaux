@@ -147,7 +147,7 @@
 		max-width: 600px;
 		margin: 0 auto;
 		text-align: center;
-		background-image: url("../../assets/visuB.png");
+		background-image: url('../../assets/visuB.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -170,8 +170,8 @@
 		font-weight: bold;
 	}
 	.country-name {
-  font-size: 1.2em;
-  text-align: center;
-  margin-top: 10px;
-}
+		font-size: 1.2em;
+		text-align: center;
+		margin-top: 10px;
+	}
 </style>

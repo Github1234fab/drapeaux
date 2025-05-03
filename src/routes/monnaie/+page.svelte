@@ -11,16 +11,16 @@
 
 	// Charger les pays
 	onMount(async () => {
-	try {
-		const endpoint = encodeURIComponent('https://restcountries.com/v3.1/all'); // ou autre URL
-		const res = await fetch(`/api/proxy?endpoint=${endpoint}`);
+		try {
+			const endpoint = encodeURIComponent('https://restcountries.com/v3.1/all'); // ou autre URL
+			const res = await fetch(`/api/proxy?endpoint=${endpoint}`);
 			if (!res.ok) throw new Error('Erreur lors du chargement des pays');
 			countries = await res.json();
 			startGame();
-	} catch (error) {
-		console.error('Erreur depuis la fonction Netlify :', error);
-	}
-});
+		} catch (error) {
+			console.error('Erreur depuis la fonction Netlify :', error);
+		}
+	});
 	// Choisir un pays et générer les options
 	function startGame() {
 		showResult = false;
@@ -86,7 +86,7 @@
 					<p>Question {gamePart + 1}/10</p>
 					<p>Bonnes réponses : {counter}</p>
 				</div>
-				<a href="/">Accueil</a>
+
 				<div style="text-align: center;">
 					<img
 						class="flag"
@@ -136,6 +136,7 @@
 		height: 100vh;
 		background-image: url('../../assets/visuA.png');
 		font-family: 'DM Sans', sans-serif;
+		padding: 10px;
 	}
 	.container {
 		background: rgba(255, 255, 255, 0.911);
@@ -143,7 +144,7 @@
 		border-radius: 10px;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 		min-width: 50%;
-		height: 70%;
+		height: 80%;
 		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.329);
 	}
 	h1,
@@ -201,5 +202,21 @@
 		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.194);
 		width: 50%;
 		margin: 30px auto;
+	}
+
+	@media (max-width: 768px) {
+		.container {
+			width: 90%;
+			height: auto;
+			height: 100%;
+		}
+		h1,
+		h2 {
+			font-size: 1.5rem;
+		}
+		button {
+			width: 100%;
+			font-size: 1rem;
+		}
 	}
 </style>

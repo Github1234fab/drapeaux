@@ -30,9 +30,7 @@
 		try {
 			const encodedEndpoint = encodeURIComponent(urlSelected);
 			// const response = await fetch(`/.netlify/functions/getCountries?endpoint=${encodedEndpoint}`);
-			const response = await fetch(
-        `/api/proxy?endpoint=${encodedEndpoint}`
-      );
+			const response = await fetch(`/api/proxy?endpoint=${encodedEndpoint}`);
 
 			if (!response.ok) throw new Error('Erreur lors du chargement des données');
 
@@ -153,7 +151,6 @@
 							<h3 class="counter">{counter}/10</h3>
 						</div>
 					</div>
-					<a href="/">Accueil</a>
 
 					<div class="container_countries_names">
 						{#each options as opt}
@@ -194,11 +191,7 @@
 
 <style>
 	main {
-		background-image: url('../../assets/visuD.png');
-		background-position: center;
-		background-size: cover;
-		background-repeat: no-repeat;
-		height: 100vh;
+		height: 100%;
 	}
 	.container_game {
 		display: flex;
@@ -208,22 +201,28 @@
 		width: 100%;
 	}
 	.container_Gaming {
+		background-image: url('../../assets/visuD.png');
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		justify-content: center;
-		width: 60%;
-		background-color: rgb(242, 242, 242);
+		width: 80%;
 		border-radius: 10px;
 		margin-top: 20px;
+		padding: 20px;
 	}
 	.container_flagAndCounter {
 		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		gap: 40px;
-		background-color: white;
-		padding: 40px;
+		gap: 30px;
+		padding: 20px;
 		border-radius: 20px;
-		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
+		background-color: white;
 	}
 
 	.counter_title {
@@ -241,7 +240,7 @@
 		align-items: center;
 		align-content: center;
 		justify-content: center;
-		width: 80%;
+		width: 50%;
 		height: 30%;
 	}
 	.countries_names {
@@ -317,34 +316,23 @@
 	}
 
 	.countryFlag {
-		height: 200px;
-		width: 300px;
-		border: 2px solid rgb(221, 219, 219);
+		height: 60%;
+		width: 60%;
 		border-radius: 10px;
+		margin-top: 30px;
 	}
 
-	/* .table_board {
-		background-color: white;
-		box-shadow: 2px -1px 5px black inset;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		border-radius: 7px;
-		width: 100%;
-		z-index: 1;
-	} */
-
 	.themes {
-		margin-top: 100px;
-		width: 90%;
+		margin-top: 20px;
+		width: 95%;
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		padding: 30px;
+		padding: 15px;
+		gap: 5px;
 		background-color: white;
 		border-radius: 20px;
-		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
+		box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
 	}
 	.continent {
 		color: orangered;
@@ -419,9 +407,21 @@
 	@media screen and (max-width: 768px) {
 		.container_game {
 			margin-top: 10px;
+			padding: 10px;
 		}
 		.countries_names {
 			font-size: 14px;
+		}
+		.container_Gaming {
+			width: 100%;
+			height: 850px;
+		}
+		.countryFlag {
+			height: 150px;
+			width: 180px;
+			border: 1px solid rgb(202, 202, 202);
+			border-radius: 10px;
+			margin-top: 30px;
 		}
 
 		.counter {
@@ -433,45 +433,31 @@
 			border: solid 1px white;
 			border-radius: 10px;
 			background-color: transparent;
-			width: 70px;
-			height: 70px;
+			width: 50px;
+			height: 50px;
 			padding: 20px;
 			box-shadow: 1px 1px 5px rgb(30, 30, 30);
 		}
 		.container_flagAndCounter {
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			gap: 15px;
-		}
-		/* 		
-		.table_board {
-			background-color: white;
-			box-shadow:
-				1px -1px 3px black inset,
-				-1px 1px 3px black inset;
-			display: flex;
 			flex-direction: column;
 			align-items: center;
-			padding-top: 20px;
-			padding-bottom: 40px;
-			border-radius: 7px;
+			justify-content: center;
 			width: 90%;
-			height: 30px;
-			z-index: 1;
-			margin-top: 10px;
-		} */
+			padding: 20px;
+			gap: 0px;
+			margin-top: -100px;
+		}
+
 		.continent {
 			color: orangered;
 			font-size: 10px;
-			height: 30px;
 			width: 100px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			align-content: center;
-			font-family: poppins;
+			font-family: 'DM Sans', sans-serif;
 			letter-spacing: 0px;
 			text-transform: uppercase;
 			font-weight: bold;
@@ -479,7 +465,7 @@
 			margin-top: 0px;
 		}
 		.container_div_visible {
-			margin-top: 70px;
+			margin-top: 0px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -487,21 +473,41 @@
 			width: 100%;
 			gap: 20px;
 		}
+		.container_countries_names {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			width: 60%;
+			height: 30%;
+		}
+		.end-game button,
+		.return {
+			margin: 2rem auto;
+			padding: 20px 20px;
+			width: 100%;
+			font-size: 0.9rem;
+			font-weight: bold;
+			border-radius: 10px;
+			border: none;
+			background-color: #007bff;
+			color: white;
+			cursor: pointer;
+			box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
+			text-decoration: none;
+		}
+		.end-game {
+			text-align: center;
+			margin-top: 2rem;
+			background-color: rgb(15, 156, 15);
+			padding: 10px;
+			border-radius: 10px;
+			min-height: 250px;
+			gap: 20px;
+		}
 	}
 
 	/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-	@media screen and (min-width: 768px) {
-		.container_countries_names {
-			width: 400px;
-		}
-
-		/* .table_board {
-			margin-top: 5px;
-			box-shadow:
-				2px -1px 5px black inset,
-				-2px 1px 5px black inset;
-			width: 90%;
-		} */
-	}
 </style>

@@ -1,5 +1,3 @@
-
-
 <main>
 	<nav>
 		<a href="/drapeaux">Drapeaux</a>
@@ -19,26 +17,28 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
+		z-index: 0;
 	}
+	
 	nav {
 		display: flex;
-		gap: 30px;
+		gap: 40px;
+		z-index: 2;
 	}
 	nav a {
 		text-decoration: none;
-		color: rgb(17, 17, 17);
-		font-size: 1rem;
-		background-color: #f5f5f5;
-		padding: 10px 50px;
+		color: white;
+		font-size: 1.2rem;
+		background-color: #05143e;
+		padding: 30px 40px;
 		border-radius: 10px;
-		border: none;
-		box-shadow: 10px 30px 20px rgba(0, 0, 0, 0.757);
+		border: 1px solid white;
+		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.515);
 		font-weight: 800;
 		letter-spacing: -0.9px;
 		transition: all 0.3s ease-in-out;
 	}
 	nav a:hover {
-		background-color: #1f1e1e;
 		color: rgb(242, 241, 241);
 		padding: 20px 50px;
 	}
@@ -50,7 +50,7 @@
 		}
 		nav {
 			flex-direction: column;
-			gap: 5px;
+			gap: 35px;
 			padding: 40px 20px;
 		}
 	}
