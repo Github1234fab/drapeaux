@@ -118,11 +118,11 @@
 			{/if}
 		{:else}
 			<h2>
-				Bravo 🎉 Vous avez trouvé {counter} bonne{counter > 1 ? 's' : ''} réponse{counter > 1
+			SCORE: {counter} bonne{counter > 1 ? 's' : ''} réponse{counter > 1
 					? 's'
-					: ''} sur 10 !
+					: ''} sur 10
 			</h2>
-			<button on:click={() => location.reload()}>Rejouer</button>
+			<button class="rejouer" on:click={() => location.reload()}>Rejouer</button>
 		{/if}
 	</div>
 </main>
@@ -133,24 +133,32 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		height: 100vh;
+		height: 100%;
 		background-image: url('../../assets/visuA.png');
 		font-family: 'DM Sans', sans-serif;
 		padding: 10px;
 	}
 	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
 		background: rgba(255, 255, 255, 0.911);
 		padding: 2rem;
 		border-radius: 10px;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 		min-width: 50%;
-		height: 80%;
+		height: 100%;
 		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.329);
+		margin-top: 0px;
 	}
 	h1,
 	h2 {
+		font-size: 1rem;
 		text-align: center;
 		margin-top: 1rem;
+		text-align: center;
 	}
 	.flag {
 		width: 220px;
@@ -160,8 +168,9 @@
 	}
 	.options {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		align-items: center;
+		justify-content: center;
 		gap: 1rem;
 		margin-top: 2rem;
 	}
@@ -175,6 +184,11 @@
 		background: #ffffff;
 		transition: background 0.3s;
 		box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.28);
+	}
+	.rejouer{
+		background-color: green;
+		color: white;
+		text-align: center;
 	}
 	.selected {
 		border: 2px solid #888;
@@ -200,7 +214,7 @@
 		padding: 20px;
 		border-radius: 10px;
 		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.194);
-		width: 50%;
+		width: 100%;
 		margin: 30px auto;
 	}
 
@@ -209,6 +223,7 @@
 			width: 90%;
 			height: auto;
 			height: 100%;
+			margin-top: 0px;
 		}
 		h1,
 		h2 {
@@ -217,6 +232,10 @@
 		button {
 			width: 100%;
 			font-size: 1rem;
+		}
+		.options {
+			flex-direction: column;
+			gap: 1px;
 		}
 	}
 </style>

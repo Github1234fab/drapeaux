@@ -131,8 +131,9 @@
 	<div class="container_game">
 		<div class="themes">
 			{#each ['Europe', 'Asie', 'Amérique', 'Afrique', 'Océanie', 'Monde'] as continent, i}
-				<span class="continent"
-					>{continent} <input type="radio" name="continent" on:click={() => findUrl(i)} /></span
+				<span class="themes-buttons"
+					>{continent}
+					<input type="radio" name="continent" on:click={() => findUrl(i)} /></span
 				>
 			{/each}
 		</div>
@@ -177,8 +178,8 @@
 					{/if}
 					{#if isFinished}
 						<div class="end-game">
-							<p>Partie terminée !</p>
-							<p>Votre score : {counter} / 10</p>
+							<!-- <p>Partie terminée !</p> -->
+							<p>SCORE : {counter} / 10</p>
 							<button on:click={rejouer}>Rejouer</button>
 							<a class="return" href="/">Retour au menu principal</a>
 						</div>
@@ -201,7 +202,7 @@
 		width: 100%;
 	}
 	.container_Gaming {
-		background-image: url('../../assets/visuD.png');
+		background-image: url('../../assets/homeImage.jpeg');
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -214,15 +215,18 @@
 		margin-top: 20px;
 		padding: 20px;
 	}
+
 	.container_flagAndCounter {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		gap: 30px;
+		gap: 0px;
 		padding: 20px;
 		border-radius: 20px;
 		background-color: white;
+		margin-top: -50px;
+		width: 90%;
 	}
 
 	.counter_title {
@@ -243,9 +247,16 @@
 		width: 50%;
 		height: 30%;
 	}
+	.countryFlag {
+		height: 160px;
+		width: 240px;
+		border-radius: 10px;
+		margin-top: 0px;
+		border: 1px solid rgb(214, 191, 191);
+	}
 	.countries_names {
 		color: rgb(1, 1, 72);
-		box-shadow: 1px 1px 7px 0px rgb(83, 82, 82);
+		box-shadow: 1px 1px 7px 0px rgb(17, 17, 17);
 		background-color: rgb(252, 252, 252);
 		width: 70%;
 		padding: 15px;
@@ -254,7 +265,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.408);
+		box-shadow: 0px 30px 20px rgba(30, 30, 30, 0.5);
 		border: none;
 		cursor: pointer;
 		transition: 0.2s ease-in-out;
@@ -306,49 +317,48 @@
 		font-size: 16px;
 		color: rgb(18, 17, 17);
 		border: solid 1px white;
-		padding: 10px;
+		padding: 20px;
 		border-radius: 10px;
 		background-color: transparent;
-		width: 100px;
-		height: 100px;
-		padding: 20px;
+		width: 50px;
+		height: 50px;
 		box-shadow: 1px 1px 5px rgb(30, 30, 30);
 	}
 
-	.countryFlag {
-		height: 60%;
-		width: 60%;
-		border-radius: 10px;
-		margin-top: 30px;
+	.arrow {
+		color: white;
+	}
+	.counter_title {
+		color: rgb(13, 13, 13);
+		font-size: 1rem;
+		font-weight: bold;
+		padding: 20px;
+		letter-spacing: -1px;
 	}
 
 	.themes {
-		margin-top: 20px;
-		width: 95%;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		padding: 15px;
-		gap: 5px;
-		background-color: white;
-		border-radius: 20px;
-		box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
-	}
-	.continent {
-		color: orangered;
-		font-size: 13px;
-		height: 50px;
-		width: 100px;
-		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		align-items: center;
-		align-content: center;
-		letter-spacing: 0px;
-		text-transform: uppercase;
-		font-weight: 700;
-		gap: 5px;
-	}
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 20px;
+			gap: 40px;
+			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
+			width: 90%;
+			margin-top: 20px;
+		}
+		.themes-buttons {
+			font-size: 1rem;
+			color: red;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+			padding: 5px;
+		
+		}
+
 	.next {
 		background-color: #6744a8;
 		color: white;
@@ -405,6 +415,24 @@
 	/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 	@media screen and (max-width: 768px) {
+		.themes {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 20px;
+			gap: 0px;
+			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
+			width: 65%;
+		}
+		.themes-buttons {
+			font-size: 0.7rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+		
+		}
 		.container_game {
 			margin-top: 10px;
 			padding: 10px;
@@ -421,7 +449,8 @@
 			width: 180px;
 			border: 1px solid rgb(202, 202, 202);
 			border-radius: 10px;
-			margin-top: 30px;
+			margin-top: 10px;
+			padding: 5px;
 		}
 
 		.counter {
@@ -443,27 +472,22 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			width: 90%;
+			width: 100%;
+			height: 350px;
 			padding: 20px;
 			gap: 0px;
 			margin-top: -100px;
 		}
-
-		.continent {
-			color: orangered;
-			font-size: 10px;
-			width: 100px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			align-content: center;
-			font-family: 'DM Sans', sans-serif;
-			letter-spacing: 0px;
-			text-transform: uppercase;
+		.counter_title {
+			color: rgb(13, 13, 13);
+			font-size: 1rem;
 			font-weight: bold;
-			gap: -5px;
-			margin-top: 0px;
+			padding: 20px;
+			letter-spacing: -1px;
+			height: 43px;
+			margin-top: -10px;
 		}
+
 		.container_div_visible {
 			margin-top: 0px;
 			display: flex;
@@ -480,7 +504,7 @@
 			align-items: center;
 			align-content: center;
 			justify-content: center;
-			width: 60%;
+			width: 100%;
 			height: 30%;
 		}
 		.end-game button,
@@ -506,6 +530,27 @@
 			border-radius: 10px;
 			min-height: 250px;
 			gap: 20px;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.themes {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 20px;
+			gap: 0px;
+			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
+			width: 100%;
+		}
+		.themes-buttons {
+			font-size: 0.7rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+		
 		}
 	}
 

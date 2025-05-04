@@ -15,7 +15,7 @@
 		try {
 			// Encodage de l'URL pour sécuriser la requête
 			const endpoint = 'https://restcountries.com/v3.1/all';
-			const encodedEndpoint = encodeURIComponent(endpoint); 
+			const encodedEndpoint = encodeURIComponent(endpoint);
 
 			// On fait appel au proxy
 			const response = await fetch(`/api/proxy?endpoint=${encodedEndpoint}`);
@@ -78,7 +78,7 @@
 			<h2>Comment appelle-t-on les habitants de :</h2>
 			<h1>{country}</h1>
 			<img class="flag" src={countryFlag} alt="Drapeau de {country}" />
-			<a href="/">Accueil</a>
+
 			<div class="options">
 				{#each options as opt}
 					<button on:click={() => reponse(opt)}>{opt.name}</button>
@@ -117,7 +117,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		height: 100vh;
+		height: 100%;
 		background-image: url('../../assets/visuB.png');
 		background-position: center;
 		background-repeat: no-repeat;
@@ -128,15 +128,20 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 30px;
+		gap: 10px;
 		padding: 30px;
-		margin: 0 auto;
+		margin: 10px auto;
 		text-align: center;
 		background-color: rgba(255, 255, 255, 0.8);
 		border-radius: 10px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		letter-spacing: -1px;
-		height: 70%;
+		height: 100%;
+		width: 95%;
+	}
+	h2 {
+		font-size: 1rem;
+		color: #2a3659;
 	}
 	.flag {
 		width: 220px;
@@ -183,7 +188,7 @@
 		margin: 0 auto;
 		color: white;
 		text-align: center;
-		background-color: rgb(194, 13, 13);
+		background-color: rgb(26, 150, 26);
 		border-radius: 10px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		font-weight: 700;

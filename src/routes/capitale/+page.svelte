@@ -100,30 +100,33 @@
 
 <div class="container">
 	{#if !showGame}
-		<h2>Choisis une région :</h2>
-		{#each regions as region}
-			<button on:click={() => findUrl(region.url)}>
-				{region.name}
-			</button>
-		{/each}
+		<div class="wrapper">
+			<h2>Choisis une région :</h2>
+			{#each regions as region}
+				<button on:click={() => findUrl(region.url)}>
+					{region.name}
+				</button>
+			{/each}
+		</div>
 	{:else if gameEnded}
 		<h2>Fin du jeu !</h2>
 		<p>Tu as trouvé {score} bonne(s) réponse(s) sur 10.</p>
 		<button on:click={reload}>Rejouer</button>
 	{:else}
-		<h2>Quelle est la capitale de ce pays ?</h2>
-		<a href="/">accueil</a>
-		<img class="flag" src={country.flags?.png} alt="Drapeau" />
-		<p class="country-name">{country.translations?.fra?.common || 'Nom du pays inconnu'}</p>
+		<div class="wrapper__game">
+			<h2>Quelle est la capitale de ce pays ?</h2>
 
-		<div class="options">
-			{#each capitalOptions as opt}
-				<button on:click={() => handleAnswer(opt)} disabled={showResult}>
-					{opt.name}
-				</button>
-			{/each}
+			<img class="flag" src={country.flags?.png} alt="Drapeau" />
+			<p class="country-name">{country.translations?.fra?.common || 'Nom du pays inconnu'}</p>
+
+			<div class="options">
+				{#each capitalOptions as opt}
+					<button on:click={() => handleAnswer(opt)} disabled={showResult}>
+						{opt.name}
+					</button>
+				{/each}
+			</div>
 		</div>
-
 		{#if showResult}
 			<p class="counter">
 				{capitalOptions.find((o) => o.isCorrect)?.name === 'Capitale inconnue'
@@ -154,16 +157,52 @@
 		height: 100vh;
 		width: 100%;
 	}
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+		padding: 30px;
+		margin: 10px auto;
+		text-align: center;
+	}
+	.wrapper__game {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 30px;
+		text-align: center;
+		background-color: rgba(243, 243, 246, 0.625);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+	.wrapper button {
+		background-color: white;
+		color: rgb(11, 9, 43);
+		padding: 12px 40px;
+		border-radius: 10px;
+		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.705);
+		font-weight: 700;
+		letter-spacing: -0.9px;
+		cursor: pointer;
+		margin-top: 0px;
+		border: none;
+		min-width: 60%;
+	}
 	.flag {
-		width: 150px;
-		margin-bottom: 20px;
+		width: 200px;
+		margin-bottom: 0px;
+		border-radius: 10px;
 	}
 	.options button {
-		display: block;
-		margin: 10px auto;
 		padding: 10px 20px;
 		font-size: 1rem;
 		cursor: pointer;
+		width: 70%;
+		border-radius: 10px;
 	}
 	.counter {
 		margin-top: 1rem;
