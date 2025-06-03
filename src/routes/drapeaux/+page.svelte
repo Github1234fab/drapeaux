@@ -142,14 +142,17 @@
 			<div class="container_Gaming">
 				<div class="container_div container_div_visible">
 					<div class="container_flagAndCounter">
-						<div class="nbr_of_shot">
-							<h3 class="counter_title">Coups</h3>
-							<h3 class="counter">{gamePart}/10</h3>
-						</div>
 						<img src={countryFlag} alt="Drapeau" class="countryFlag" />
-						<div class="points">
-							<h3 class="counter_title">Points</h3>
-							<h3 class="counter">{counter}/10</h3>
+						<div class="wrapper__counter">
+							<div class="nbr_of_shot">
+								<h3 class="counter_title">Coups</h3>
+								<h3 class="counter">{gamePart}/10</h3>
+							</div>
+
+							<div class="points">
+								<h3 class="counter_title">Points</h3>
+								<h3 class="counter">{counter}/10</h3>
+							</div>
 						</div>
 					</div>
 
@@ -218,7 +221,7 @@
 
 	.container_flagAndCounter {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		gap: 0px;
@@ -226,7 +229,15 @@
 		border-radius: 20px;
 		background-color: white;
 		margin-top: -50px;
-		width: 90%;
+		/* width: 90%; */
+	}
+	.wrapper__counter {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+		width: 100%;
 	}
 
 	.counter_title {
@@ -315,7 +326,7 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 16px;
-		color: rgb(18, 17, 17);
+		color: rgb(234, 90, 18);
 		border: solid 1px white;
 		padding: 20px;
 		border-radius: 10px;
@@ -337,27 +348,25 @@
 	}
 
 	.themes {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-radius: 20px;
-			gap: 40px;
-			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
-			width: 90%;
-			margin-top: 20px;
-		}
-		.themes-buttons {
-			font-size: 1rem;
-			color: red;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			gap: 5px;
-			padding: 5px;
-		
-		}
+		width: 70%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		gap: 40px;
+		box-shadow: 0px 0px 5px 1px rgba(30, 30, 30, 0.148);
+		margin-top: 20px;
+	}
+	.themes-buttons {
+		font-size: 1rem;
+		color: red;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding: 5px;
+	}
 
 	.next {
 		background-color: #6744a8;
@@ -421,7 +430,7 @@
 			align-items: center;
 			border-radius: 20px;
 			gap: 0px;
-			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
+			box-shadow: 0px 0px 5px 1px rgba(30, 30, 30, 0.148);
 			width: 65%;
 		}
 		.themes-buttons {
@@ -431,7 +440,6 @@
 			align-items: center;
 			justify-content: center;
 			gap: 5px;
-		
 		}
 		.container_game {
 			margin-top: 10px;
@@ -457,8 +465,8 @@
 			display: flex;
 			align-items: left;
 			justify-content: center;
-			font-size: 14px;
-			color: rgb(255, 255, 255);
+			font-size: 1rem;
+			color: rgb(213, 77, 14);
 			border: solid 1px white;
 			border-radius: 10px;
 			background-color: transparent;
@@ -472,8 +480,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			width: 100%;
-			height: 350px;
+			height: auto;
 			padding: 20px;
 			gap: 0px;
 			margin-top: -100px;
@@ -540,7 +547,7 @@
 			align-items: center;
 			border-radius: 20px;
 			gap: 0px;
-			box-shadow: 0px 10px 20px rgba(30, 30, 30, 0.334);
+			box-shadow: 0px 0px 5px 1px rgba(30, 30, 30, 0.148);
 			width: 100%;
 		}
 		.themes-buttons {
@@ -550,7 +557,6 @@
 			align-items: center;
 			justify-content: center;
 			gap: 5px;
-		
 		}
 	}
 
