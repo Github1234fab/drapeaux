@@ -101,7 +101,6 @@
 <div class="container">
 	{#if !showGame}
 		<div class="wrapper">
-			<h2>Choisis une région :</h2>
 			{#each regions as region}
 				<button on:click={() => findUrl(region.url)}>
 					{region.name}
@@ -109,13 +108,13 @@
 			{/each}
 		</div>
 	{:else if gameEnded}
+
 		<h2>Fin du jeu !</h2>
 		<p>Tu as trouvé {score} bonne(s) réponse(s) sur 10.</p>
 		<button on:click={reload}>Rejouer</button>
+	
 	{:else}
 		<div class="wrapper__game">
-			<h2>Quelle est la capitale de ce pays ?</h2>
-
 			<img class="flag" src={country.flags?.png} alt="Drapeau" />
 			<p class="country-name">{country.translations?.fra?.common || 'Nom du pays inconnu'}</p>
 
@@ -126,22 +125,22 @@
 					</button>
 				{/each}
 			</div>
-		</div>
-		{#if showResult}
-			<p class="counter">
-				{capitalOptions.find((o) => o.isCorrect)?.name === 'Capitale inconnue'
-					? 'La capitale est inconnue 😕'
-					: `Bonne réponse : ${capitalOptions.find((o) => o.isCorrect).name}`}
-			</p>
-			{#if questionNumber < 9}
-				<button on:click={nextQuestion}>Question suivante</button>
-			{:else}
-				<button on:click={nextQuestion}>Voir le score final</button>
+			{#if showResult}
+				<p class="counter">
+					{capitalOptions.find((o) => o.isCorrect)?.name === 'Capitale inconnue'
+						? 'La capitale est inconnue 😕'
+						: `C'est : ${capitalOptions.find((o) => o.isCorrect).name}`}
+				</p>
+				{#if questionNumber < 9}
+					<button class="btn-next" on:click={nextQuestion}>Question suivante</button>
+				{:else}
+					<button class="btn-next" on:click={nextQuestion}>Voir le score final</button>
+				{/if}
 			{/if}
-		{/if}
 
-		<p class="counter">Question : {questionNumber + 1}/10</p>
-		<p class="counter">Bonne(s) réponse(s) : {score}</p>
+			<p class="counter">Question : {questionNumber + 1}/10</p>
+			<p class="counter">Total : {score}/10</p>
+		</div>
 	{/if}
 </div>
 
@@ -150,21 +149,21 @@
 		max-width: 600px;
 		margin: 0 auto;
 		text-align: center;
-		background-image: url('../../assets/visuB.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 100vh;
 		width: 100%;
+		background-image: url('../../assets/visuB.png');
 	}
 	.wrapper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 2px;
+		gap: 5px;
 		padding: 30px;
-		margin: 10px auto;
+		margin: 0px auto;
 		text-align: center;
 	}
 	.wrapper__game {
@@ -175,23 +174,30 @@
 		gap: 5px;
 		padding: 30px;
 		text-align: center;
-		background-color: rgba(243, 243, 246, 0.625);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
+		background-color: white;
+		width: 90%;
+		margin: 0px auto;
+		border-radius: 15px;
+		
 	}
 	.wrapper button {
 		background-color: white;
 		color: rgb(11, 9, 43);
-		padding: 12px 40px;
+		padding: 12px 15px;
 		border-radius: 10px;
-		box-shadow: 0px 30px 20px rgba(0, 0, 0, 0.705);
+		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.169);
 		font-weight: 700;
 		letter-spacing: -0.9px;
 		cursor: pointer;
 		margin-top: 0px;
-		border: none;
-		min-width: 60%;
+		border: 1px solid black;
+		transition: 0.3s ease-in-out;
 	}
+	.wrapper button:hover {
+		background-color: rgb(4, 4, 43);
+		color: white;
+	}
+
 	.flag {
 		width: 200px;
 		margin-bottom: 0px;
@@ -203,6 +209,11 @@
 		cursor: pointer;
 		width: 70%;
 		border-radius: 10px;
+		background-color: rgb(4, 4, 43);
+		color: white;
+		border: none;
+		margin-top: 0.5rem;
+		box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.2);
 	}
 	.counter {
 		margin-top: 1rem;
@@ -212,5 +223,16 @@
 		font-size: 1.2em;
 		text-align: center;
 		margin-top: 10px;
+	}
+	.btn-next {
+		background-color: green;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 10px;
+		border: none;
+		cursor: pointer;
+		font-size: 1.2rem;
+		margin-top: 1rem;
+		box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.2);
 	}
 </style>
